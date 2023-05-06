@@ -1,0 +1,70 @@
+
+<h1> Transaction List for <%= user.username %> </h1>
+
+      <p> Here is your list of transactions! </p>      
+      <table class="transactionTable">
+        <tr>
+            <td>
+                <a class="btn btn-lg btn-primary" href="/transaction/groupByCategory">group by category</a>
+            </td>
+            <td>
+                <a class="btn btn-lg btn-primary" href="/transaction?sortBy=category">sort by category</a>
+            </td>
+            <td>
+                <a class="btn btn-lg btn-primary" href="/transaction?sortBy=amount">sort by amount</a>
+            </td>
+            <td>
+                <a class="btn btn-lg btn-primary" href="/transaction?sortBy=description">sort by description</a>
+            </td>
+            <td>
+                <a class="btn btn-lg btn-primary" href="/transaction?sortBy=date">sort by date</a>
+            </td>
+        </tr>
+    </table>
+
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>description</th>
+            <th>amount</th>
+            <th>category</th>
+            <th>date</th>
+            <th>delete</th>
+            <th>edit</th>
+        </tr>
+        <% transitems.forEach(transitem=> { %>
+            <tr class=>
+                <td>
+                    <%= transitem.description %>
+                </td>
+                <td>
+                    <%= transitem.amount %>
+                </td>
+                <td>
+                    <%= transitem.category %>
+                </td>
+                <td>
+                    <%= transitem.date %>
+                </td>
+                <td>
+                    <a href="/transaction/remove/<%= transitem._id %>">
+                        <i class="bi bi-trash"></i>
+                    </a>
+                </td>
+                <td>
+                    <a href="/transaction/edit/<%= transitem._id %>">
+                        <i class="bi bi-pencil-square"></i>
+                    </a>
+                </td>
+            </tr>
+            <% })%>
+    </table>
+
+    <h1>Add a new transaction</h1>
+    <form method="post" action="transaction">
+        <input type="text" name="description" placeholder="description"><br>
+        <input type="text" name="category" placeholder="category"><br>
+        <input type="text" name="amount" placeholder="amount"><br>
+        <input type="text" name="date" placeholder="mm/dd/yyyy"><br>
+        <input type="submit" value="store">
+        </form>
+      
